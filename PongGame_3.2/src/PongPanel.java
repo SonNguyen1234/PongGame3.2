@@ -48,7 +48,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private boolean downPressed;
 	private boolean wPressed;
 	private boolean sPressed;
-
+    // thiếu khai báo và code nút space để restart ................................
 	/** The ball: position, diameter */
 	private int ballX = 200;
 	private int ballY = 200;
@@ -66,7 +66,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private int playerTwoX = 465;
 	private int playerTwoY = 250;
 	private int playerTwoWidth = 10;
-	private int playerTwoHeight = 60;
+	private int playerTwoHeight = 60;	// lỗi........................
 
 	/** Speed of the paddle - How fast the paddle move. */
 	private int paddleSpeed = 5;
@@ -128,8 +128,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			int nextBallLeft = ballX + ballDeltaX;
 			int nextBallRight = ballX + diameter + ballDeltaX;
 			// FIXME Something not quite right here
-			int nextBallTop = ballY;
-			int nextBallBottom = ballY + diameter;
+			int nextBallTop = ballY;              //thiếu +ballDeltaX...........
+			int nextBallBottom = ballY + diameter;//thiếu +ballDeltaX...........
 
 			// Player 1's paddle position
 			int playerOneRight = playerOneX + playerOneWidth;
@@ -151,7 +151,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				// is it going to miss the paddle?
 				if (nextBallTop > playerOneBottom || nextBallBottom < playerOneTop) {
 
-					playerOneScore++;
+					playerOneScore++;   // playerTwoScore++; ...............
 
 					// Player 2 Win, restart the game
 					if (playerTwoScore == 3) {
@@ -163,7 +163,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				} else {
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
-					ballDeltaX *= 1;
+					ballDeltaX *= 1;     // ballDeltaX *= -1; ...............
 				}
 			}
 
@@ -185,7 +185,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
-					ballDeltaX *= 1;
+					ballDeltaX *= 1; // ballDeltaX *= -1; ...............
 				}
 			}
 
@@ -212,7 +212,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString("Pong Game", 130, 100);
 
 			// FIXME Wellcome message below show smaller than game title
-			g.drawString("Press 'P' to play.", 175, 400);
+			g.drawString("Press 'P' to play.", 175, 400); // vẽ nhỏ lợi ...........
 		} else if (playing) {
 
 			/* Game is playing */
@@ -222,6 +222,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			int playerTwoLeft = playerTwoX;
 
 			// draw dashed line down center
+			// vẽ màu xanh lá ......................................
 			for (int lineY = 0; lineY < getHeight(); lineY += 50) {
 				g.drawLine(250, lineY, 250, lineY + 25);
 			}
@@ -250,6 +251,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 			// Draw scores
 			// TODO Set Blue color
+			//vẽ màu xanh dương cho điểm ................................
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 			g.drawString(String.valueOf(playerOneScore), 100, 100);
 			g.drawString(String.valueOf(playerTwoScore), 400, 100);
@@ -265,6 +267,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			// Draw Restart message
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 			// TODO Draw a restart message
+			//thiếu restart message .........................................
 		}
 	}
 
@@ -305,7 +308,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
 			wPressed = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			wPressed = false;
+			wPressed = false;// sPressed = false .................................
 		}
 	}
 
